@@ -79,7 +79,7 @@ B 		= 100		# Dummy model parameter
 # Spatial Grid
 D 		= 50 		# Depth of model domain [m]
 dz 		= 0.1		# Node spacing [m]
-z = np.linspace(0.0,D,D/dz+1)
+z = np.linspace(0.0,D,int(D/dz+1))
 
 # Time parameters
 t_end_d = 24000 	# End of simulation [days]
@@ -93,13 +93,13 @@ times = np.linspace(dt,t_end,t_end_d)
 # Boundary Conditions
 
 # Top BC
-T_s = 0.0 		# Surface temperature [degC]
+T_s = 1.0 		# Surface temperature [degC]
 # Bottom BC
 geo = 0.025		# geothermal gradient [degC/m]
 
 # Initial Condition
 
-T_init = 0.0
+T_init = -1.0
 T_i = T_init * np.ones(np.shape(z))
 
 ###############################################################################
@@ -152,9 +152,9 @@ plot_times = np.array([150,300,600,1500,3000,6000,12000,24000,48000])*86400
 # Time loop
 for t in times:
 
-	# print '###################'
-	# print 'Current time = ', t
-	# print ''
+	# print("###################")
+	# print("Current time =", t)
+	# print("")
 
 	# Evaluate nonlinearities at previous time step
 	ARC_T = ARC(T_n)
@@ -185,15 +185,13 @@ for t in times:
 	T_n = T_solve	
 
 	if t in plot_times:
-		print t/86400.0
-		plt.plot(z,T_solve)
-		print np.min(T_solve)
+		print(t/86400.)
+		plt.plot(T_solve,z)
+		# print(np.min(T_solve))
 
-plt.xlim(0,50)
-plt.ylim(-1.0,3.0)
+plt.ylabel(r"Depth [m]")
+plt.xlabel(r"Temperature [$^{\circ}C$]")
 plt.grid()
+plt.gca().invert_yaxis()
 plt.show()
-
-# ellapsed = datetime.now() - start_time
-# print "Elapsed Time =", ellapsed.total_seconds()
 
