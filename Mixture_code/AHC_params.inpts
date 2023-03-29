@@ -1,0 +1,44 @@
+# This is an example input card for the AHC_1D_mixture_transient_GST.py code.
+# See the input parameter list for details.
+# Start comment lines with '#' symbol.
+
+# Domain
+Model_Depth = 50.0
+Node_Spacing = 0.1
+
+# Time
+Sim_Years = 50
+Time_Step = 1
+
+# Rock/Soil
+Specific_Heat_Rock = 800.0
+Density_Rock = 2800.0
+Thermal_Conductivity_Rock = 4.2
+
+# Water
+Specific_Heat_Water = 4187.0
+Density_Water = 999.8
+Thermal_Conductivity_Water = 0.58
+Latent_Heat_Fusion = 334000.0
+
+# Ice
+Specific_Heat_Ice = 2110.0
+Density_Ice = 916.8
+Thermal_Conductivity_Ice = 2.2
+
+# Air
+Specific_Heat_Air = 1.0
+Density_Air = 1.3
+Thermal_Conductivity_Air = 0.04
+
+# Plotting Times
+Plotting_Times = 10,20,30,40,50
+
+# GST File
+GST_File = GST_test.txt
+Geo_Heat_Grad = 0.25
+Init_Temp = -5.0
+
+# Soil Parameters
+Soil_File = soil_params.txt
+Water_Table_Depth = 10.0
